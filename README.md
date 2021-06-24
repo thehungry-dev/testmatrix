@@ -19,6 +19,16 @@ The matrix of input can be a CSV file, a matrix of type `[][]interface{}` or
 a reader that responds to `Read` and `ReadHeaders` functions.
 
 ```go
+matrix := testmatrix.NewColoredTestMatrix(t *testing.T)
+
+func (matrix testmatrix.TestMatrix) AssertSlice(data [][]interface{}, assert func(subjectText string, headerText string) bool)
+
+func (matrix testmatrix.TestMatrix) AssertCsv(reader io.Reader, assert func(subjectText string, headerText string) bool)
+
+func (matrix testmatrix.TestMatrix) Assert(r testmatrix.Reader, assert func(subjectText string, headerText string) bool)
+```
+
+```go
 //go:embed atoi.csv
 var atoiMatrix string
 
